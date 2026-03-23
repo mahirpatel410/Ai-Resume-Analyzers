@@ -23,6 +23,10 @@ app.get("/", (req, res) => {
   res.send("API Running");
 });
 
+app.get("/", (req, res) => {
+  res.send("Backend is running 🚀");
+});
+
 // Start server AFTER DB connection
 connectDB()
   .then(() => {
