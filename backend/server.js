@@ -4,34 +4,33 @@ const connectDB = require("./config/db");
 
 const app = express();
 
+// ✅ CORS (only once)
 app.use(cors({
   origin: "https://ai-resume-analyzers-ebon.vercel.app",
   credentials: true
 }));
 
 // Middleware
-app.use(cors());
 app.use(express.json());
 
 // Routes
 app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api", require("./routes/dashboard")); // ✅ only once
+app.use("/api", require("./routes/dashboard"));
 app.use("/api/resume", require("./routes/resumeRoutes"));
 
-// Test route
-app.get("/", (req, res) => {
-  res.send("API Running");
-});
-
+// ✅ Single test route
 app.get("/", (req, res) => {
   res.send("Backend is running 🚀");
 });
 
+// ✅ PORT FIX (VERY IMPORTANT)
+const PORT = process.env.PORT || 5000;
+
 // Start server AFTER DB connection
 connectDB()
   .then(() => {
-    app.listen(5000, () => {
-      console.log("Server running on port 5000");
+    app.listen(PORT, () => {
+      console.log("Server running on port", PORT);
     });
   })
   .catch(err => {
