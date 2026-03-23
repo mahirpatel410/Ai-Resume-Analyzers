@@ -4,6 +4,11 @@ const connectDB = require("./config/db");
 
 const app = express();
 
+app.use(cors({
+  origin: "https://ai-resume-analyzers-ebon.vercel.app",
+  credentials: true
+}));
+
 // Middleware
 app.use(cors());
 app.use(express.json());
