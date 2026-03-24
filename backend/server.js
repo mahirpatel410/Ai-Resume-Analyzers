@@ -6,7 +6,10 @@ const app = express();
 
 // ✅ CORS (only once)
 app.use(cors({
-  origin: "https://ai-resume-analyzers-ebon.vercel.app",
+  origin: [
+    "http://localhost:3000",
+    "https://ai-resume-analyzers-ebon.vercel.app"
+  ],
   credentials: true
 }));
 
